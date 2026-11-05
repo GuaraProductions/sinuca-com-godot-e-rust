@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://d0wbfdcpc8jqo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i1nwu"]
+bg_color = Color(0.09923176, 0.09923177, 0.09923176, 0.68235296)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4v7s"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.13333334, 0.13333334, 0.13333334, 0.53333336)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
+outline_size = 2
+
+[node name="UI" type="Ui" unique_id=217709608]
+
+[node name="_" type="MarginContainer" parent="." unique_id=99914343]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Player" type="PanelContainer" parent="_" unique_id=2124559929]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i1nwu")
+
+[node name="PlayerAtual" type="Label" parent="_/Player" unique_id=1056831393]
+unique_name_in_owner = true
+modulate = Color(0.9353159, 0.8112203, 0.5468243, 1)
+layout_mode = 2
+
+[node name="TodosPlayers" type="PanelContainer" parent="_" unique_id=761023133]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_g4v7s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="_/TodosPlayers" unique_id=1572161290]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Player1" type="VBoxContainer" parent="_/TodosPlayers/VBoxContainer" unique_id=365730735]
+layout_mode = 2
+
+[node name="Name1" type="Label" parent="_/TodosPlayers/VBoxContainer/Player1" unique_id=771437679]
+unique_name_in_owner = true
+modulate = Color(1, 0.3882353, 0.36862746, 1)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Player1Name"
+
+[node name="Team1" type="Label" parent="_/TodosPlayers/VBoxContainer/Player1" unique_id=564700764]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Tipo:"
+
+[node name="Points1" type="Label" parent="_/TodosPlayers/VBoxContainer/Player1" unique_id=1996079809]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Pontuação"
+
+[node name="Label" type="Label" parent="_/TodosPlayers/VBoxContainer" unique_id=35521006]
+layout_mode = 2
+text = "________________"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="Player2" type="VBoxContainer" parent="_/TodosPlayers/VBoxContainer" unique_id=360228206]
+layout_mode = 2
+
+[node name="Name2" type="Label" parent="_/TodosPlayers/VBoxContainer/Player2" unique_id=1597791073]
+unique_name_in_owner = true
+modulate = Color(0.3254902, 0.53333336, 1, 1)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Player2Name"
+
+[node name="Team2" type="Label" parent="_/TodosPlayers/VBoxContainer/Player2" unique_id=1371904793]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Points2" type="Label" parent="_/TodosPlayers/VBoxContainer/Player2" unique_id=403823825]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="-" type="CenterContainer" parent="." unique_id=1773029808]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resultado" type="Label" parent="-" unique_id=339828016]
+unique_name_in_owner = true
+layout_mode = 2

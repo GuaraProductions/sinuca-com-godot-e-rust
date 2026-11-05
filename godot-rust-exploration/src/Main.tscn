@@ -1,0 +1,181 @@
+[gd_scene format=3 uid="uid://cxodd60q2ttnj"]
+
+[ext_resource type="PackedScene" uid="uid://be2vguodrn04f" path="res://src/PoolCue/PoolCue.tscn" id="1_5utq2"]
+[ext_resource type="PackedScene" uid="uid://c872f14v05shl" path="res://assets/billard-table.glb" id="2_22j0b"]
+[ext_resource type="PackedScene" path="res://src/Ball/BallRack/BallRack.tscn" id="3_t51gg"]
+[ext_resource type="Script" uid="uid://t5no3kfo63ar" path="res://src/Pocket/gravitational_pull.gd" id="4_38a0m"]
+[ext_resource type="PackedScene" uid="uid://caskbvfkg8q81" path="res://src/Pocket/Pocket.tscn" id="5_moqj1"]
+[ext_resource type="PackedScene" uid="uid://d0wbfdcpc8jqo" path="res://src/Ui/ui.tscn" id="6_8ec3e"]
+[ext_resource type="PackedScene" uid="uid://c01cm6vq45s30" path="res://assets/billard-room.glb" id="6_room01"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_57qmd"]
+
+[sub_resource type="Sky" id="Sky_yf5fn"]
+sky_material = SubResource("ProceduralSkyMaterial_57qmd")
+
+[sub_resource type="Environment" id="Environment_g4v7s"]
+background_mode = 2
+background_energy_multiplier = 1.34
+sky = SubResource("Sky_yf5fn")
+ambient_light_source = 3
+ambient_light_energy = 2.98
+reflected_light_source = 2
+tonemap_mode = 1
+tonemap_exposure = 1.57
+tonemap_white = 2.57
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+radius = 1.69
+
+[node name="Node3D" type="GameManager" unique_id=1671313342]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1435726926]
+environment = SubResource("Environment_g4v7s")
+
+[node name="billard-room" parent="." unique_id=1003300201 instance=ExtResource("6_room01")]
+transform = Transform3D(29.999998, 0, 0, 0, 29.999998, 0, 0, 0, 29.999998, 0, 0, 0)
+
+[node name="Ceiling" parent="billard-room" index="2" unique_id=2026808245]
+visible = false
+
+[node name="billard-table" parent="." unique_id=535370183 instance=ExtResource("2_22j0b")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
+
+[node name="CollisionShape3D" parent="billard-table/Rail_Right/StaticBody3D" parent_id_path=PackedInt32Array(535370183, 514674573) index="0" unique_id=908280734]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -0.018087864, -0.04173374, -3.7000475e-05)
+
+[node name="BallRack" parent="." unique_id=1773722205 instance=ExtResource("3_t51gg")]
+ball_scene = "uid://h3hy2o6urnnl"
+ball_source = "uid://bvipwbht1kois"
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1555427363]
+transform = Transform3D(-0.002720776, 0.9950944, -0.09889197, -0.023618158, 0.09880081, 0.99482685, 0.99971735, 0.00504235, 0.023233492, 0.45199966, 59.39331, -1.6518993)
+current = true
+
+[node name="GravitationalPull" type="Node3D" parent="." unique_id=2054227954]
+
+[node name="Area3D" type="Area3D" parent="GravitationalPull" unique_id=1513682594]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.619108, 23.54871, -33.440598)
+collision_layer = 0
+collision_mask = 6
+script = ExtResource("4_38a0m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GravitationalPull/Area3D" unique_id=1777134810]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("SphereShape3D_g4v7s")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="Area3D2" type="Area3D" parent="GravitationalPull" unique_id=1161886116]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.619108, 23.54871, -0.10836792)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_38a0m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GravitationalPull/Area3D2" unique_id=1974478149]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("SphereShape3D_g4v7s")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="Area3D3" type="Area3D" parent="GravitationalPull" unique_id=2004995868]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.619108, 23.54871, 33.684677)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_38a0m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GravitationalPull/Area3D3" unique_id=1264630415]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("SphereShape3D_g4v7s")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="Area3D4" type="Area3D" parent="GravitationalPull" unique_id=90590220]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.713121, 23.54871, 33.377464)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_38a0m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GravitationalPull/Area3D4" unique_id=624185785]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("SphereShape3D_g4v7s")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="Area3D5" type="Area3D" parent="GravitationalPull" unique_id=841635459]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.866732, 23.54871, -0.10836792)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_38a0m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GravitationalPull/Area3D5" unique_id=1044726093]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("SphereShape3D_g4v7s")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="Area3D6" type="Area3D" parent="GravitationalPull" unique_id=1044160928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.866724, 23.54871, -33.747807)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_38a0m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GravitationalPull/Area3D6" unique_id=710502232]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("SphereShape3D_g4v7s")
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="Pockets" type="Node3D" parent="." unique_id=1215085320]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5235405, 0)
+
+[node name="Pocket_Corner_-1_-1" parent="Pockets" unique_id=1543593699 instance=ExtResource("5_moqj1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.8, 23.34, 33.6)
+
+[node name="Pocket_Corner_-1_1" parent="Pockets" unique_id=807767307 instance=ExtResource("5_moqj1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.8, 23.34, -33.6)
+
+[node name="Pocket_Corner_1_-1" parent="Pockets" unique_id=1548081062 instance=ExtResource("5_moqj1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8, 23.34, 33.6)
+
+[node name="Pocket_Corner_1_1" parent="Pockets" unique_id=1894067041 instance=ExtResource("5_moqj1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8, 23.34, -33.6)
+
+[node name="Pocket_Side_-1" parent="Pockets" unique_id=1392845641 instance=ExtResource("5_moqj1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.8, 23.34, 0)
+
+[node name="Pocket_Side_1" parent="Pockets" unique_id=932178385 instance=ExtResource("5_moqj1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8, 23.34, 0)
+
+[node name="Node3D2" type="Node3D" parent="." unique_id=1765072878]
+transform = Transform3D(0.28901717, 0, -0.9573239, 0, 1, 0, 0.9573239, 0, 0.28901717, -2.493104, 24.523733, 15.870291)
+
+[node name="PoolCue" parent="." unique_id=2129683310 instance=ExtResource("1_5utq2")]
+max_impulse = 14.0
+transform = Transform3D(0.28901717, 0, -0.9573239, 0, 1, 0, 0.9573239, 0, 0.28901717, -4.3682847, 24.658102, 16.333086)
+
+[node name="Ui" parent="." unique_id=1687710249 instance=ExtResource("6_8ec3e")]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=742922923]
+transform = Transform3D(1, 0, 0, 0, -0.0064116716, 0.99997944, 0, -0.99997944, -0.0064116716, 0, 56.35935, 0)
+light_energy = 11.887
+light_indirect_energy = 5.912
+light_size = 0.266
+shadow_enabled = true
+spot_range = 52.908337
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="." unique_id=2045804688]
+transform = Transform3D(1, 0, 0, 0, -0.0064116716, 0.99997944, 0, -0.99997944, -0.0064116716, 0, 56.946056, -21.777597)
+light_energy = 12.028
+light_indirect_energy = 5.912
+shadow_enabled = true
+spot_range = 52.908337
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="." unique_id=1240390538]
+transform = Transform3D(1, 0, 0, 0, -0.0064116716, 0.99997944, 0, -0.99997944, -0.0064116716, 0, 54.398174, 20.842054)
+light_energy = 12.075
+light_indirect_energy = 5.912
+shadow_enabled = true
+spot_range = 52.908337
+
+[editable path="billard-room"]
+[editable path="billard-table"]

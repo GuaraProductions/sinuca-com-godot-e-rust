@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://h3hy2o6urnnl"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fc1h8"]
+friction = 0.2
+bounce = 0.9
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ball"]
+radius = 0.028
+
+[node name="Ball" type="Ball" unique_id=1555092271]
+collision_layer = 2
+collision_mask = 3
+mass = 0.25
+physics_material_override = SubResource("PhysicsMaterial_fc1h8")
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 4
+linear_damp_mode = 1
+linear_damp = 0.4
+angular_damp_mode = 1
+angular_damp = 0.6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1911133769]
+shape = SubResource("SphereShape3D_ball")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1434811506]

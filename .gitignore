@@ -1,0 +1,18 @@
+# Rust
+target/
+**/*.rs.bk
+
+# Godot
+.godot/
+
+# Blender (backups automáticos: .blend1, .blend2, ...)
+*.blend[0-9]*
+
+# Claude Code
+.claude/settings.local.json
+.claude/code-critic-workspace/
+
+# Sistema operacional
+Thumbs.db
+desktop.ini
+.DS_Store

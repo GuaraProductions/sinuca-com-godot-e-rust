@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://be2vguodrn04f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(0.39, 0.39, 43.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
+albedo_color = Color(0.56078434, 0.39607844, 0.28235295, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_yf5fn")
+size = Vector3(0.39, 0.39, 43.5)
+
+[node name="PoolCue" type="PoolCue" unique_id=973347372]
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1238074840]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6384549)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2142355416]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21.75)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=1080283105]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21.75)
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="Timer" type="Timer" parent="." unique_id=630487207]
+one_shot = true
