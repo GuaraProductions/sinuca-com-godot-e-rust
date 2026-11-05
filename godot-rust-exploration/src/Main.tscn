@@ -60,9 +60,9 @@ current = true
 [node name="GravitationalPull" type="Node3D" parent="." unique_id=2054227954]
 
 [node name="Area3D" type="Area3D" parent="GravitationalPull" unique_id=1513682594]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.619108, 23.54871, -33.440598)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8, 23.54871, -33.6)
 collision_layer = 0
-collision_mask = 6
+collision_mask = 2
 script = ExtResource("4_38a0m")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GravitationalPull/Area3D" unique_id=1777134810]
@@ -71,7 +71,7 @@ shape = SubResource("SphereShape3D_g4v7s")
 debug_color = Color(0, 0.6, 0.69803923, 1)
 
 [node name="Area3D2" type="Area3D" parent="GravitationalPull" unique_id=1161886116]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.619108, 23.54871, -0.10836792)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8, 23.54871, 0)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("4_38a0m")
@@ -82,7 +82,7 @@ shape = SubResource("SphereShape3D_g4v7s")
 debug_color = Color(0, 0.6, 0.69803923, 1)
 
 [node name="Area3D3" type="Area3D" parent="GravitationalPull" unique_id=2004995868]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.619108, 23.54871, 33.684677)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8, 23.54871, 33.6)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("4_38a0m")
@@ -93,7 +93,7 @@ shape = SubResource("SphereShape3D_g4v7s")
 debug_color = Color(0, 0.6, 0.69803923, 1)
 
 [node name="Area3D4" type="Area3D" parent="GravitationalPull" unique_id=90590220]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.713121, 23.54871, 33.377464)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.8, 23.54871, 33.6)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("4_38a0m")
@@ -104,7 +104,7 @@ shape = SubResource("SphereShape3D_g4v7s")
 debug_color = Color(0, 0.6, 0.69803923, 1)
 
 [node name="Area3D5" type="Area3D" parent="GravitationalPull" unique_id=841635459]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.866732, 23.54871, -0.10836792)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.8, 23.54871, 0)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("4_38a0m")
@@ -115,7 +115,7 @@ shape = SubResource("SphereShape3D_g4v7s")
 debug_color = Color(0, 0.6, 0.69803923, 1)
 
 [node name="Area3D6" type="Area3D" parent="GravitationalPull" unique_id=1044160928]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.866724, 23.54871, -33.747807)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.8, 23.54871, -33.6)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("4_38a0m")
