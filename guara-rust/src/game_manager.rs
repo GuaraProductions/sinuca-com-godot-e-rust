@@ -1,10 +1,11 @@
 use godot::classes::INode3D;
 use godot::classes::Input;
 use godot::classes::InputEvent;
+use godot::classes::InputEventKey;
 use godot::classes::InputEventMouseButton;
 use godot::classes::Node3D;
 use godot::classes::input::MouseMode;
-use godot::global::MouseButton;
+use godot::global::{Key, MouseButton};
 use godot::prelude::*;
 
 use crate::BallRack;
@@ -12,6 +13,7 @@ use crate::Ui;
 use crate::ball_markers::BallMarkers;
 use crate::bot_player::BotPlayer;
 use crate::camera_rig::CameraRig;
+use crate::exit_prompt::ExitPrompt;
 use crate::main_menu::MainMenu;
 use crate::trajectory_preview::TrajectoryPreview;
 use crate::ball::{Ball, BallType};
@@ -67,6 +69,8 @@ pub struct GameManager {
     bot: OnReady<Gd<BotPlayer>>,
     #[init(node = "BallMarkers")]
     markers: OnReady<Gd<BallMarkers>>,
+    #[init(node = "ExitPrompt")]
+    exit_prompt: OnReady<Gd<ExitPrompt>>,
 
     base: Base<Node3D>,
 
@@ -100,6 +104,14 @@ impl INode3D for GameManager {
             .signals()
             .shot_taken()
             .connect_other(&*self, Self::on_shot_taken);
+        self.exit_prompt
+            .signals()
+            .confirmed()
+            .connect_other(&*self, Self::on_leave_confirmed);
+        self.exit_prompt
+            .signals()
+            .cancelled()
+            .connect_other(&*self, Self::on_leave_cancelled);
 
         self.enter_menu();
     }
@@ -107,13 +119,19 @@ impl INode3D for GameManager {
     fn input(&mut self, event: Gd<InputEvent>) {
         if self.phase != GamePhase::Menu {
             if event.is_action_pressed("ui_cancel") && !event.is_echo() {
-                self.enter_menu();
+                self.request_leave();
                 return;
             }
             if event.is_action_pressed("reset_game") && !event.is_echo() {
                 let config = self.config.clone();
                 self.start_match(config);
                 return;
+            }
+            if let Ok(key) = event.clone().try_cast::<InputEventKey>() {
+                if key.is_pressed() && !key.is_echo() && key.get_physical_keycode() == Key::N {
+                    self.markers.bind_mut().toggle_numbers();
+                    return;
+                }
             }
         }
 
@@ -182,6 +200,42 @@ impl GameManager {
             cue.set_disabled(true);
         }
         Self::set_mouse_mode(MouseMode::VISIBLE);
+    }
+
+    /// First Esc: pause and ask. A finished match has nothing left to lose.
+    fn request_leave(&mut self) {
+        if self.phase == GamePhase::GameOver {
+            self.enter_menu();
+            return;
+        }
+
+        // Their button releases would be missed while paused, leaving the camera
+        // in free look or the cue half drawn when play resumes.
+        self.end_free_look();
+        if !self.current_ref().is_bot() {
+            self.pool_cue.bind_mut().set_input_locked(true);
+        }
+
+        self.base().get_tree().set_pause(true);
+        Self::set_mouse_mode(MouseMode::VISIBLE);
+        self.exit_prompt.bind_mut().open();
+
+        if let Some(mut viewport) = self.base().get_viewport() {
+            viewport.set_input_as_handled();
+        }
+    }
+
+    fn on_leave_confirmed(&mut self) {
+        self.base().get_tree().set_pause(false);
+        self.enter_menu();
+    }
+
+    fn on_leave_cancelled(&mut self) {
+        self.base().get_tree().set_pause(false);
+        Self::set_mouse_mode(MouseMode::CAPTURED);
+        if self.phase == GamePhase::Aiming && !self.current_ref().is_bot() {
+            self.pool_cue.bind_mut().set_input_locked(false);
+        }
     }
 
     fn on_start_requested(&mut self, name1: GString, name2: GString, vs_bot: bool, difficulty: i64) {

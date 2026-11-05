@@ -36,6 +36,8 @@ pub struct BallMarkers {
 
     markers: Vec<Marker>,
     highlight: BallType,
+    /// The player's choice, kept across matches. Rings do not depend on it.
+    numbers_visible: bool,
 }
 
 #[godot_api]
@@ -81,6 +83,7 @@ impl INode3D for BallMarkers {
 
     fn process(&mut self, _delta: f64) {
         let highlight = self.highlight;
+        let numbers_visible = self.numbers_visible;
         for marker in &mut self.markers {
             let position = marker.ball.get_global_position();
             let (potted, own) = {
@@ -92,7 +95,7 @@ impl INode3D for BallMarkers {
             };
             let in_play = !potted && position.y > FELT_Y - 1.0;
 
-            marker.label.set_visible(in_play);
+            marker.label.set_visible(in_play && numbers_visible);
             marker.ring.set_visible(in_play && own);
             if in_play {
                 marker.label.set_global_position(position + Vector3::new(0.0, LABEL_HEIGHT, 0.0));
@@ -103,6 +106,10 @@ impl INode3D for BallMarkers {
 }
 
 impl BallMarkers {
+    pub fn toggle_numbers(&mut self) {
+        self.numbers_visible = !self.numbers_visible;
+    }
+
     /// Rings go under balls of `group`; `Unidentified` shows numbers only.
     pub fn set_highlight(&mut self, group: BallType) {
         self.highlight = group;

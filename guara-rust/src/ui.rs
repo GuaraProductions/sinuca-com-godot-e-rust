@@ -9,7 +9,7 @@ use godot::prelude::*;
 use crate::ball::BallType;
 
 const HINT: &str = "Mouse: mirar   |   Botão esquerdo (segurar) + puxar o mouse para baixo: tacada   |   \
-                    Botão direito (segurar): visão livre   |   R: reiniciar   |   Esc: menu";
+                    Botão direito (segurar): visão livre   |   N: números   |   R: reiniciar   |   Esc: menu";
 
 #[derive(GodotClass)]
 #[class(init, base=CanvasLayer)]

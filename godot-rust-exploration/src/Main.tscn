@@ -163,6 +163,8 @@ transform = Transform3D(0.28901717, 0, -0.9573239, 0, 1, 0, 0.9573239, 0, 0.2890
 
 [node name="BotPlayer" type="BotPlayer" parent="." unique_id=1687710253]
 
+[node name="ExitPrompt" type="ExitPrompt" parent="." unique_id=1687710254]
+
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=742922923]
 transform = Transform3D(1, 0, 0, 0, -0.0064116716, 0.99997944, 0, -0.99997944, -0.0064116716, 0, 56.35935, 0)
 light_energy = 11.887

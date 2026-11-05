@@ -11,6 +11,7 @@ mod ball_markers;
 mod ball_rack;
 mod bot_player;
 mod camera_rig;
+mod exit_prompt;
 mod game_manager;
 mod main_menu;
 mod player;

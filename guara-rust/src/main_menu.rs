@@ -15,13 +15,14 @@ const NAME_MAX_LEN: i32 = 16;
 const PANEL_PADDING: i32 = 14;
 
 /// (Control, what it does), shown beside the form.
-const COMMANDS: [(&str, &str); 8] = [
+const COMMANDS: [(&str, &str); 9] = [
     ("Mover o mouse", "Mirar o taco"),
     ("Botão esquerdo (segurar)", "Preparar a tacada"),
     ("Puxar o mouse para baixo", "Aumentar a força"),
     ("Soltar o botão esquerdo", "Dar a tacada"),
     ("Botão direito (segurar)", "Visão livre: o mouse gira a câmera"),
     ("Roda do mouse / W A S D", "Na visão livre: zoom / mover a câmera"),
+    ("N", "Mostrar ou ocultar os números das bolas"),
     ("R", "Reiniciar a partida"),
     ("Esc", "Voltar ao menu"),
 ];
@@ -131,7 +132,7 @@ impl MainMenu {
     fn commands_panel() -> Gd<PanelContainer> {
         let mut panel = PanelContainer::new_alloc();
         let mut column = VBoxContainer::new_alloc();
-        column.add_theme_constant_override("separation", 8);
+        column.add_theme_constant_override("separation", 3);
         panel.add_child(&Self::padded(&column));
 
         let mut heading = Label::new_alloc();

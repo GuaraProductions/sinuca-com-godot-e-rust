@@ -42,6 +42,18 @@ pub struct BotPlayer {
     #[init(node = "../Pockets")]
     pockets: OnReady<Gd<Node3D>>,
 
+    /// Largest aim error per difficulty, in degrees. At this table's scale,
+    /// 1 degree over 40 units misses by about 0.7, nearly a ball radius.
+    #[export]
+    #[init(val = 4.0)]
+    easy_aim_error: f32,
+    #[export]
+    #[init(val = 3.0)]
+    medium_aim_error: f32,
+    #[export]
+    #[init(val = 0.3)]
+    hard_aim_error: f32,
+
     state: BotState,
     group: BallType,
     difficulty: i64,
@@ -106,9 +118,9 @@ impl BotPlayer {
     /// (Aim error in degrees, how many of the best shots to pick among.)
     fn skill(&self) -> (f32, i32) {
         match self.difficulty {
-            0 => (3.0, 4),
-            1 => (1.2, 2),
-            _ => (0.3, 1),
+            0 => (self.easy_aim_error, 4),
+            1 => (self.medium_aim_error, 2),
+            _ => (self.hard_aim_error, 1),
         }
     }
 
