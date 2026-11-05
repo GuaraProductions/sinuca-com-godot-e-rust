@@ -53,7 +53,7 @@ ball_scene = "uid://h3hy2o6urnnl"
 ball_source = "uid://bvipwbht1kois"
 transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1555427363]
+[node name="CameraRig" type="CameraRig" parent="." unique_id=1555427363]
 transform = Transform3D(-0.002720776, 0.9950944, -0.09889197, -0.023618158, 0.09880081, 0.99482685, 0.99971735, 0.00504235, 0.023233492, 0.45199966, 59.39331, -1.6518993)
 current = true
 
@@ -154,6 +154,14 @@ max_impulse = 14.0
 transform = Transform3D(0.28901717, 0, -0.9573239, 0, 1, 0, 0.9573239, 0, 0.28901717, -4.3682847, 24.658102, 16.333086)
 
 [node name="Ui" parent="." unique_id=1687710249 instance=ExtResource("6_8ec3e")]
+
+[node name="MainMenu" type="MainMenu" parent="." unique_id=1687710250]
+
+[node name="BallMarkers" type="BallMarkers" parent="." unique_id=1687710251]
+
+[node name="TrajectoryPreview" type="TrajectoryPreview" parent="." unique_id=1687710252]
+
+[node name="BotPlayer" type="BotPlayer" parent="." unique_id=1687710253]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=742922923]
 transform = Transform3D(1, 0, 0, 0, -0.0064116716, 0.99997944, 0, -0.99997944, -0.0064116716, 0, 56.35935, 0)
